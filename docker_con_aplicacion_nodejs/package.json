@@ -1,0 +1,12 @@
+{
+    "name": "nodejs-hola-mundo",
+    "version": "1.0.0",
+    "description": "Aplicación dummy de Node.js para decir 'Hola Mundo'",
+    "main": "app.js",
+    "scripts": {
+      "start": "node app.js"
+    },
+    "author": "Juan Carlos Perez Hernandez",
+    "license": "ISC"
+  }
+  

@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - data:/data
+    depends_on:
+      - db
+    networks:
+      - appnet
+
+  db:
+    image: amazonlinux:2023
+    volumes:
+      - data:/data
+    command: >
+      /bin/bash -c "
+        yum update -y &&
+        yum install -y sqlite &&
+        sqlite3 /data/person.db \"CREATE TABLE IF NOT EXISTS person (name TEXT, email TEXT); INSERT INTO person (name, email) VALUES ('Juan Carlos', 'jc.przhdz@gmail.com');\""
+    networks:
+      - appnet
+
+volumes:
+  data:
+
+networks:
+  appnet:
+    driver: bridge
